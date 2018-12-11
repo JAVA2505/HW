@@ -5,4 +5,4 @@
  * @author User
  *
  */
-package mate.academy;
+package mate.academy1;
