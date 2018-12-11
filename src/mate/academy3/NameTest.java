@@ -10,7 +10,7 @@ public class NameTest {
 		String fioOutput;
 		int symbolInt;
 
-		System.out.print("Enter your FIO (ENG): ");
+		System.out.print("Enter your FIO: ");
 
 		Scanner sc = new Scanner(System.in);
 
@@ -19,6 +19,23 @@ public class NameTest {
 		sc.close();
 
 		System.out.println("\n");
+
+		StringBuilder builder = new StringBuilder();
+		String fioOutputTemp = fioInput.substring(0, 1).toUpperCase();
+		builder.append(fioOutputTemp);
+		fioOutputTemp = fioInput.substring(1, fioInput.length() - 4);
+		builder.append(fioOutputTemp);
+		fioOutputTemp = fioInput.substring(fioInput.length() - 4, fioInput.length() - 3).toUpperCase();
+		builder.append(fioOutputTemp);
+		fioOutputTemp = fioInput.substring(fioInput.length() - 3, fioInput.length() - 2);
+		builder.append(fioOutputTemp);
+		fioOutputTemp = fioInput.substring(fioInput.length() - 2, fioInput.length() - 1).toUpperCase();
+		builder.append(fioOutputTemp);
+		fioOutputTemp = fioInput.substring(fioInput.length() - 1, fioInput.length());
+		builder.append(fioOutputTemp);
+		System.out.println(builder);
+
+		// ---------------------------------------------------------------------------
 
 		char[] fioArray = fioInput.toCharArray();
 

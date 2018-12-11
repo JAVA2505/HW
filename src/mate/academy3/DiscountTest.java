@@ -6,10 +6,9 @@ public class DiscountTest {
 
 	public static void main(String[] args) {
 
-		
 		int total = 400;
 		int discount = 0;
-		
+
 		System.out.print("Enter your SUM: ");
 
 		Scanner sc = new Scanner(System.in);
@@ -18,21 +17,19 @@ public class DiscountTest {
 
 		sc.close();
 
-		switch (total / 400) {
+		switch (total / 100) {
 		case 0:
-			switch (total / 300) {
-			case 0:
-				discount = 0;
-				System.out.println(
-						"Your discount is " + discount + " %, total to pay: " + (total - total / 100 * discount));
-				break;
+		case 1:
+		case 2:
+			discount = 0;
+			System.out
+					.println("Your discount is " + discount + " %, total to pay: " + (total - total / 100 * discount));
+			break;
 
-			default:
-				discount = 3;
-				System.out.println(
-						"Your discount is " + discount + " %, total to pay: " + (total - total / 100 * discount));
-				break;
-			}
+		case 3:
+			discount = 3;
+			System.out
+					.println("Your discount is " + discount + " %, total to pay: " + (total - total / 100 * discount));
 			break;
 
 		default:
