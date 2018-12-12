@@ -16,10 +16,8 @@ public class DogTest2D {
 		char bombSmall = 'b';
 
 		int dogHealth = 100;
-		int positionAidBig;
-		int positionAidSmall;
-		int positionBombBig;
-		int positionBombSmall;
+		int positionAid;
+		int positionBomb;
 
 		int line = 0;
 		int column = 0;
@@ -35,91 +33,57 @@ public class DogTest2D {
 			}
 		}
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < dogTest.length; i++) {
 
 			if (i == 0) {
 
-				positionAidBig = (int) ((Math.random() * 8) + 1);
+				positionAid = (int) ((Math.random() * dogTest.length - 2) + 1);
 
 				do {
-					positionAidSmall = (int) ((Math.random() * 8) + 1);
-
-				} while (positionAidSmall == positionAidBig);
-
-				do {
-					positionBombBig = (int) ((Math.random() * 8) + 1);
-				} while (positionBombBig == positionAidBig || positionBombBig == positionAidSmall);
-
-				do {
-					positionBombSmall = (int) ((Math.random() * 8) + 1);
-
-				} while (positionBombSmall == positionAidBig || positionBombSmall == positionAidSmall
-						|| positionBombSmall == positionBombBig);
+					positionBomb = (int) ((Math.random() * dogTest.length - 2) + 1);
+				} while (positionBomb == positionAid);
 
 				random = (int) (Math.random() * 2);
 				if (random > 0) {
-
-					dogTest[i][positionAidBig] = aidBig;
+					dogTest[i][positionAid] = aidBig;
+				} else {
+					dogTest[i][positionAid] = aidSmall;
 				}
 
 				random = (int) (Math.random() * 2);
 				if (random > 0) {
-					dogTest[i][positionAidSmall] = aidSmall;
-				}
-
-				random = (int) (Math.random() * 2);
-				if (random > 0) {
-					dogTest[i][positionBombBig] = bombBig;
-				}
-
-				random = (int) (Math.random() * 2);
-				if (random > 0) {
-					dogTest[i][positionBombSmall] = bombSmall;
+					dogTest[i][positionBomb] = bombBig;
+				} else {
+					dogTest[i][positionBomb] = bombSmall;
 				}
 
 			} else {
-				positionAidBig = (int) (Math.random() * 9);
-				do {
-					positionAidSmall = (int) (Math.random() * 9);
-				} while (positionAidSmall == positionAidBig);
+				positionAid = (int) (Math.random() * dogTest.length - 1);
 
 				do {
-					positionBombBig = (int) (Math.random() * 9);
-				} while (positionBombBig == positionAidBig || positionBombBig == positionAidSmall);
-
-				do {
-					positionBombSmall = (int) (Math.random() * 9);
-				} while (positionBombSmall == positionAidBig || positionBombSmall == positionAidSmall
-						|| positionBombSmall == positionBombBig);
+					positionBomb = (int) (Math.random() * dogTest.length - 1);
+				} while (positionBomb == positionAid);
 
 				random = (int) (Math.random() * 2);
 				if (random > 0) {
-
-					dogTest[i][positionAidBig] = aidBig;
+					dogTest[i][positionAid] = aidBig;
+				} else {
+					dogTest[i][positionAid] = aidSmall;
 				}
 
 				random = (int) (Math.random() * 2);
 				if (random > 0) {
-					dogTest[i][positionAidSmall] = aidSmall;
+					dogTest[i][positionBomb] = bombBig;
+				} else {
+					dogTest[i][positionBomb] = bombSmall;
 				}
-
-				random = (int) (Math.random() * 2);
-				if (random > 0) {
-					dogTest[i][positionBombBig] = bombBig;
-				}
-
-				random = (int) (Math.random() * 2);
-				if (random > 0) {
-					dogTest[i][positionBombSmall] = bombSmall;
-				}
-
 			}
 
 		}
 
 		dogTest[0][0] = dog;
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < dogTest.length; i++) {
 			System.out.println(Arrays.toString(dogTest[i]));
 
 		}
@@ -130,8 +94,8 @@ public class DogTest2D {
 
 		for (;;) {
 
-			for (int i = 0; i < 10; i++) {
-				for (int j = 0; j < 10; j++) {
+			for (int i = 0; i < dogTest.length; i++) {
+				for (int j = 0; j < dogTest.length; j++) {
 
 					if (dogTest[i][j] == dog) {
 						line = i;
@@ -148,7 +112,9 @@ public class DogTest2D {
 			case "d":
 
 				if (column < 9) {
-					
+
+					dogHealth = dogHealth - 5;
+
 					if (dogTest[line][column + 1] == aidBig) {
 						dogHealth = dogHealth + 40;
 						if (dogHealth > 100) {
@@ -162,17 +128,15 @@ public class DogTest2D {
 					} else if (dogTest[line][column + 1] == bombBig) {
 						dogHealth = dogHealth - 40;
 						if (dogHealth <= 0) {
-							sc.close();
 							System.out.println("GAME OVER");
 						}
 					} else if (dogTest[line][column + 1] == bombSmall) {
 						dogHealth = dogHealth - 20;
 						if (dogHealth <= 0) {
-							sc.close();
 							System.out.println("GAME OVER");
 						}
 					}
-						
+
 					dogTest[line][column + 1] = dog;
 					dogTest[line][column] = comma;
 				}
@@ -181,8 +145,12 @@ public class DogTest2D {
 
 			case "a":
 
-				if (column > 0) {
-					
+				if (column == 0) {
+					dogHealth = dogHealth - 5;
+				} else if (column > 0) {
+
+					dogHealth = dogHealth - 5;
+
 					if (dogTest[line][column - 1] == aidBig) {
 						dogHealth = dogHealth + 40;
 						if (dogHealth > 100) {
@@ -196,17 +164,15 @@ public class DogTest2D {
 					} else if (dogTest[line][column - 1] == bombBig) {
 						dogHealth = dogHealth - 40;
 						if (dogHealth <= 0) {
-							sc.close();
 							System.out.println("GAME OVER");
 						}
 					} else if (dogTest[line][column - 1] == bombSmall) {
 						dogHealth = dogHealth - 20;
 						if (dogHealth <= 0) {
-							sc.close();
 							System.out.println("GAME OVER");
 						}
 					}
-					
+
 					dogTest[line][column - 1] = dog;
 					dogTest[line][column] = comma;
 				}
@@ -215,6 +181,8 @@ public class DogTest2D {
 			case "s":
 
 				if (line < 9) {
+
+					dogHealth = dogHealth - 5;
 
 					if (dogTest[line + 1][column] == aidBig) {
 						dogHealth = dogHealth + 40;
@@ -229,17 +197,15 @@ public class DogTest2D {
 					} else if (dogTest[line + 1][column] == bombBig) {
 						dogHealth = dogHealth - 40;
 						if (dogHealth <= 0) {
-							sc.close();
 							System.out.println("GAME OVER");
 						}
 					} else if (dogTest[line + 1][column] == bombSmall) {
 						dogHealth = dogHealth - 20;
 						if (dogHealth <= 0) {
-							sc.close();
 							System.out.println("GAME OVER");
 						}
 					}
-					
+
 					dogTest[line + 1][column] = dog;
 					dogTest[line][column] = comma;
 
@@ -249,7 +215,9 @@ public class DogTest2D {
 			case "w":
 
 				if (line > 0) {
-					
+
+					dogHealth = dogHealth - 5;
+
 					if (dogTest[line - 1][column] == aidBig) {
 						dogHealth = dogHealth + 40;
 						if (dogHealth > 100) {
@@ -263,14 +231,12 @@ public class DogTest2D {
 					} else if (dogTest[line - 1][column] == bombBig) {
 						dogHealth = dogHealth - 40;
 						if (dogHealth <= 0) {
-							sc.close();
 							System.out.println("GAME OVER");
 						}
 					} else if (dogTest[line - 1][column] == bombSmall) {
 						dogHealth = dogHealth - 20;
 						if (dogHealth <= 0) {
-							sc.close();
-							System.out.println("GAME OVER" + sc);
+							System.out.println("GAME OVER");
 						}
 					}
 
@@ -281,14 +247,17 @@ public class DogTest2D {
 
 			}
 
-			for (int i = 0; i < 10; i++) {
-
-				System.out.println(Arrays.toString(dogTest[i]));
-
+			if (dogHealth <= 0) {
+				System.out.println("Health: " + dogHealth);
+				System.out.println("GAME OVER");
+				sc.close();
+				break;
 			}
-			dogHealth = dogHealth - 5;
-			System.out.println("Health: " + dogHealth);
 
+			for (int i = 0; i < 10; i++) {
+				System.out.println(Arrays.toString(dogTest[i]));
+			}
+			System.out.println("Health: " + dogHealth);
 		}
 
 	}
