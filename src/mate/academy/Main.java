@@ -6,7 +6,7 @@ public class Main {
 
 		PowerSupply ps = new PowerSupply();
 		
-		ps.statePS(0, true, false, false);
+		ps.statePS(0, true, false, true);
 		
 		ps.infoPS();
 
