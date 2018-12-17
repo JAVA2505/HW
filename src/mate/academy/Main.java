@@ -61,9 +61,21 @@ public class Main {
 		customer.addProduct(product9);
 		customer.addProduct(product10);
 		
+				
+		customer.removeProduct("A");
+		customer.removeProduct("A");
+		customer.removeProduct("C");
+		customer.removeProduct("D");
+		customer.removeProduct("E");
+		customer.removeProduct("F");
+		customer.removeProduct("G");
+		customer.removeProduct("J");
+		customer.removeProduct("p");
+
+				
+		customer.getInfo();
 		
 		
-		cart.getInfo();
 		
 		
 		
