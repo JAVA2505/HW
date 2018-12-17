@@ -1,11 +1,11 @@
 package mate.academy;
 
-import java.util.Arrays;
 
 public class Cart {
 
 	private Product[] arrayCart = new Product[10];
 	int counter = 0;
+	int total = 0;
 
 	public void getInfo() {
 		int n = 1;
@@ -15,12 +15,14 @@ public class Cart {
 			System.out.println("Products list " + counter + " pcs : " + "\n");
 			for (int i = 0; i < arrayCart.length; i++) {
 				if (arrayCart[i] != null) {
+					total = total + arrayCart[i].getPrice();
 
 					System.out.println("Product # " + (n++) + "\n" + "Name: " + arrayCart[i].getName() + "; Price: "
 							+ arrayCart[i].getPrice() + "\n");
 
 				}
 			}
+			System.out.println("Total: " + total);
 		}
 	}
 
