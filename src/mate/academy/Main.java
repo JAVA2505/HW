@@ -4,8 +4,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Product product1 = new Product();
-		Product product2 = new Product();
+		Product product1 = new WeightColorProduct();
+		Product product2 = new ColorProduct();
 		Product product3 = new Product();
 		Product product4 = new Product();
 		Product product5 = new Product();
@@ -18,6 +18,7 @@ public class Main {
 		
 		product1.setName("A");
 		product1.setPrice(10);
+		
 		
 		product2.setName("B");
 		product2.setPrice(10);
