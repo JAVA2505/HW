@@ -2,13 +2,16 @@ package mate.academy;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		Hero tadpol = new Tadpole();
 		Hero perch = new Perch();
 
 		System.out.println(tadpol.toString());
-		System.out.println(tadpol.getHealth());
+		System.out.println("\n        VS        \n");
+		System.out.println(perch.toString());
+		System.out.println("\n        FIGHT!!!!!!!       \n");
+		
 
 		Hero[] fighting = { tadpol, perch };
 
@@ -30,6 +33,7 @@ public class Main {
 
 					// gameOver = fighting[i + 1].getHealth() <= 0 ? false : true;
 
+					Thread.sleep(1000);
 					System.out.println("-----------------------\n");
 					System.out.println("Move " + moveNumber);
 
@@ -49,7 +53,8 @@ public class Main {
 					}
 
 					// gameOver = fighting[i - 1].getHealth() <= 0 ? false : true;
-
+					
+					Thread.sleep(1000);
 					System.out.println("-----------------------\n");
 					System.out.println("Move " + moveNumber);
 
