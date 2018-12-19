@@ -8,11 +8,12 @@ public class Hero {
 	private int intelligence;
 	private int strength;
 	private int health;
+	private boolean stun = false;
 
 	public Hero() {
 	}
 
-	public Hero(String name, int agility, int intelligence, int strength, int health, String ultimate) {
+	public Hero(String name, int agility, int intelligence, int strength, int health, String ultimate, boolean stun) {
 
 		this.name = name;
 		this.agility = agility;
@@ -20,6 +21,7 @@ public class Hero {
 		this.strength = strength;
 		this.health = health;
 		this.ultimateInfo = ultimate;
+		this.setStun(stun);
 	}
 
 	public int strikeHero() {
@@ -27,11 +29,15 @@ public class Hero {
 		return strike;
 	}
 
-	public int ultimateHero() {
+	public int ultimateStrike() {
 		int ultimate = 0;
-		return ultimate;	
+		return ultimate;
 	}
-	
+
+	public boolean ultimateStun() {
+		boolean ultimate = true;
+		return ultimate;
+	}
 
 	public String getName() {
 		return name;
@@ -39,6 +45,14 @@ public class Hero {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getUltimateInfo() {
+		return ultimateInfo;
+	}
+
+	public void setUltimateInfo(String ultimateInfo) {
+		this.ultimateInfo = ultimateInfo;
 	}
 
 	public int getAgility() {
@@ -73,11 +87,18 @@ public class Hero {
 		this.health = health;
 	}
 
+	public boolean isStun() {
+		return stun;
+	}
+
+	public void setStun(boolean stun) {
+		this.stun = stun;
+	}
+
 	@Override
 	public String toString() {
-		return "Hero " + name + "\n\nAgility " + agility + "\nIntelligence " + intelligence + "\nStrength "
-				+ strength + "\nHealth " + health + "\nStrike " + strikeHero() + "\nUltimate: " + ultimateInfo;
+		return "Hero " + name + "\n\nAgility " + agility + "\nIntelligence " + intelligence + "\nStrength " + strength
+				+ "\nHealth " + health + "\nStrike " + strikeHero() + "\nUltimate: " + ultimateInfo;
 	}
-	
-	
+
 }

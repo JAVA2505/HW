@@ -11,12 +11,13 @@ public class Main {
 		System.out.println("\n        VS        \n");
 		System.out.println(perch.toString());
 		System.out.println("\n        FIGHT!!!!!!!       \n");
-		
 
 		Hero[] fighting = { tadpol, perch };
 
 		boolean gameOver = true;
 		int moveNumber = 1;
+		int counterHero1 = 0;
+		int counterHero2 = 0;
 
 		while (gameOver) {
 
@@ -31,20 +32,36 @@ public class Main {
 						break;
 					}
 
-					// gameOver = fighting[i + 1].getHealth() <= 0 ? false : true;
-
 					Thread.sleep(1000);
 					System.out.println("-----------------------\n");
 					System.out.println("Move " + moveNumber);
 
-					System.out.println(
-							"Attacking hero " + fighting[i].getName() + " - Stricke is " + fighting[i].strikeHero());
-					fighting[i + 1].setHealth(fighting[i + 1].getHealth() - fighting[i].strikeHero());
+					counterHero1++;
 
-					System.out.println(
-							"Health of hero " + fighting[i + 1].getName() + " is " + fighting[i + 1].getHealth() + "\n");
+					if (fighting[i].isStun()) {
+						break;
 
-					break;
+					} else if (counterHero1 == 3) {
+
+						System.out.println("Attacking hero is " + fighting[i].getName() + " - Stricke with ultimate is "
+								+ fighting[i].ultimateStrike());
+						fighting[i + 1].setHealth(fighting[i + 1].getHealth() - fighting[i].ultimateStrike());
+
+						System.out.println("Health of hero " + fighting[i + 1].getName() + " is "
+								+ fighting[i + 1].getHealth() + "\n");
+						counterHero1 = 0;
+						break;
+
+					} else {
+						System.out.println("Attacking hero is " + fighting[i].getName() + " - Stricke is "
+								+ fighting[i].strikeHero());
+						fighting[i + 1].setHealth(fighting[i + 1].getHealth() - fighting[i].strikeHero());
+
+						System.out.println("Health of hero " + fighting[i + 1].getName() + " is "
+								+ fighting[i + 1].getHealth() + "\n");
+
+						break;
+					}
 
 				case 1:
 					if (fighting[i - 1].getHealth() <= 0 || fighting[i].getHealth() <= 0) {
@@ -52,21 +69,44 @@ public class Main {
 						break;
 					}
 
-					// gameOver = fighting[i - 1].getHealth() <= 0 ? false : true;
-					
 					Thread.sleep(1000);
 					System.out.println("-----------------------\n");
 					System.out.println("Move " + moveNumber);
 
-					System.out.println(
+					counterHero2++;
 
-							"Attacking hero " + fighting[i].getName() + " - Stricke is " + fighting[i].strikeHero());
-					fighting[i - 1].setHealth(fighting[i - 1].getHealth() - fighting[i].strikeHero());
+					if (fighting[i].isStun()) {
+						break;
 
-					System.out.println(
-							"Health of hero " + fighting[i - 1].getName() + " is " + fighting[i - 1].getHealth() + "\n");
+					} else if (counterHero2 == 3) {
+						System.out.println(
 
-					break;
+								"Attacking hero is " + fighting[i].getName() + " - Stricke with ultimate is "
+										+ fighting[i].strikeHero() + "; " + fighting[i - 1].getName()
+										+ " is in stun on one move");
+						fighting[i - 1].setHealth(fighting[i - 1].getHealth() - fighting[i].strikeHero());
+						fighting[i - 1].setStun(true);
+
+						System.out.println("Health of hero " + fighting[i - 1].getName() + " is "
+								+ fighting[i - 1].getHealth() + "\n");
+
+						counterHero2 = 0;
+						break;
+
+					} else {
+
+						System.out.println(
+
+								"Attacking hero is " + fighting[i].getName() + " - Stricke is "
+										+ fighting[i].strikeHero());
+						fighting[i - 1].setHealth(fighting[i - 1].getHealth() - fighting[i].strikeHero());
+						fighting[i - 1].setStun(false);
+
+						System.out.println("Health of hero " + fighting[i - 1].getName() + " is "
+								+ fighting[i - 1].getHealth() + "\n");
+
+						break;
+					}
 				}
 				moveNumber++;
 
