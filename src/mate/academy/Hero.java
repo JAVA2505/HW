@@ -9,6 +9,7 @@ public class Hero {
 	private int strength;
 	private int health;
 	private boolean stun = false;
+	private Item[] items = new Item[2];
 
 	public Hero() {
 	}
@@ -22,7 +23,38 @@ public class Hero {
 		this.health = health;
 		this.ultimateInfo = ultimate;
 		this.setStun(stun);
+
 	}
+
+	public void addItem(int slotNumber, Item item) {
+
+		for (int i = 0; i < items.length; i++) {
+			if (i == slotNumber - 1) {
+				items[i] = item;
+				agility = agility + items[i].getAgility();
+				intelligence = intelligence + items[i].getIntelligence();
+				strength = strength + items[i].getStrength();
+				health = health + items[i].getHealth();
+			}
+		}
+
+	}
+	
+	public void removeItem(int slotNumber) {
+
+		for (int i = 0; i < items.length; i++) {
+			if (i == slotNumber - 1) {
+				agility = agility - items[i].getAgility();
+				intelligence = intelligence - items[i].getIntelligence();
+				strength = strength - items[i].getStrength();
+				health = health - items[i].getHealth();
+				items[i] = null;
+			}
+		}
+
+	}
+	
+	
 
 	public int strikeHero() {
 		int strike = intelligence / 3 + agility / 2 + strength;
@@ -98,7 +130,9 @@ public class Hero {
 	@Override
 	public String toString() {
 		return "Hero " + name + "\n\nAgility " + agility + "\nIntelligence " + intelligence + "\nStrength " + strength
-				+ "\nHealth " + health + "\nStrike " + strikeHero() + "\nUltimate: " + ultimateInfo;
+				+ "\nHealth " + health + "\nStrike " + strikeHero() + "\nUltimate: " + ultimateInfo + "\n\nSlot # 1 - "
+				+ (items[0] == null ? " is empty" : items[0].toString()) + "\n\nSlot # 2 - "
+				+ (items[1] == null ? " is empty" : items[1].toString());
 	}
 
 }

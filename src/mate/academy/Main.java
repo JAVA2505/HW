@@ -6,6 +6,14 @@ public class Main {
 
 		Hero tadpol = new Tadpole();
 		Hero perch = new Perch();
+		Item item1 = new Item("A", 2, 2, 2, 20);
+		Item item2 = new Item("B", 2, 2, 2, 20);
+		
+		tadpol.addItem(1, item1);
+		tadpol.removeItem(1);
+		tadpol.addItem(2, item1);
+		perch.addItem(2, item2);
+
 
 		System.out.println(tadpol.toString());
 		System.out.println("\n        VS        \n");
@@ -28,6 +36,7 @@ public class Main {
 				case 0:
 
 					if (fighting[i + 1].getHealth() <= 0 || fighting[i].getHealth() <= 0) {
+						System.out.println(fighting[i].getName() + " won");
 						gameOver = false;
 						break;
 					}
@@ -39,6 +48,7 @@ public class Main {
 					counterHero1++;
 
 					if (fighting[i].isStun()) {
+						System.out.println("Hero " + fighting[i].getName() + " is in stun on this move");
 						break;
 
 					} else if (counterHero1 == 3) {
@@ -65,6 +75,7 @@ public class Main {
 
 				case 1:
 					if (fighting[i - 1].getHealth() <= 0 || fighting[i].getHealth() <= 0) {
+						System.out.println(fighting[i].getName() + " won");
 						gameOver = false;
 						break;
 					}

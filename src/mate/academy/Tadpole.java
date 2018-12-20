@@ -14,4 +14,11 @@ public class Tadpole extends Hero {
 		int ultimateStrike = 20 + strikeHero();
 		return ultimateStrike;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+	
+	
 }
