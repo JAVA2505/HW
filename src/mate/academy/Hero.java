@@ -1,6 +1,6 @@
 package mate.academy;
 
-public class Hero {
+public abstract class Hero {
 
 	private String name = "";
 	private String ultimateInfo = "Ultimate Info";
@@ -31,10 +31,10 @@ public class Hero {
 		for (int i = 0; i < items.length; i++) {
 			if (i == slotNumber - 1) {
 				items[i] = item;
-				agility = agility + items[i].getAgility();
-				intelligence = intelligence + items[i].getIntelligence();
-				strength = strength + items[i].getStrength();
-				health = health + items[i].getHealth();
+				agility += items[i].getAgility();
+				intelligence += items[i].getIntelligence();
+				strength += items[i].getStrength();
+				health += items[i].getHealth();
 			}
 		}
 
@@ -44,10 +44,10 @@ public class Hero {
 
 		for (int i = 0; i < items.length; i++) {
 			if (i == slotNumber - 1) {
-				agility = agility - items[i].getAgility();
-				intelligence = intelligence - items[i].getIntelligence();
-				strength = strength - items[i].getStrength();
-				health = health - items[i].getHealth();
+				agility -= items[i].getAgility();
+				intelligence -= items[i].getIntelligence();
+				strength -= items[i].getStrength();
+				health -= items[i].getHealth();
 				items[i] = null;
 			}
 		}
