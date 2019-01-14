@@ -6,8 +6,29 @@ public class DotaEngine {
 		
 		Hero tadpol = new Tadpole();
 		Hero perch = new Perch();
-		Item item1 = new Item("A", 2, 2, 2, 20);
-		Item item2 = new Item("B", 2, 2, 2, 20);
+		Item item1 = new Item("A", 2, 14, 2, 20);
+		Item item2 = new Item("B", 2, 4, 2, 20);
+		Item item3 = new Item("C", 2, 1, 2, 20);
+		Item item4 = new Item("C", 2, 0, 2, 20);
+		Item item5 = new Item("E", 2, 3, 2, 20);
+		
+		Store store = new Store();
+		store.addAndSortItems(item1);
+		store.addAndSortItems(item2);
+		store.addAndSortItems(item3);
+		store.addAndSortItems(item4);
+		store.addAndSortItems(item5);
+		for (Item item: store.list) {
+			System.out.println("- " + item.getIntelligence());	
+		}
+		
+		store.removeItem(item3.getName());
+		
+		for (Item item: store.list) {
+			System.out.println("- " + item.getName());	
+		}
+
+		
 		
 		tadpol.addItem(1, item1);
 		tadpol.removeItem(1);
