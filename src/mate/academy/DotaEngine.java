@@ -18,18 +18,14 @@ public class DotaEngine {
 		store.addAndSortItems(item3);
 		store.addAndSortItems(item4);
 		store.addAndSortItems(item5);
-		for (Item item: store.list) {
+		for (Item item: store) {
 			System.out.println("- " + item.getIntelligence());	
 		}
-		
 		store.removeItem(item3.getName());
 		
-		for (Item item: store.list) {
+		for (Item item: store) {
 			System.out.println("- " + item.getName());	
 		}
-
-		
-		
 		tadpol.addItem(1, item1);
 		tadpol.removeItem(1);
 		tadpol.addItem(2, item1);
