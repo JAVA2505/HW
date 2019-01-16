@@ -8,28 +8,47 @@ import java.util.ListIterator;
 
 public class ArrayListMode implements List {
 
-	private SoftDrink[] elementDate;
+	private SoftDrink[] elementData;
 	private int size;
 
 	public ArrayListMode() {
 		super();
-		elementDate = new SoftDrink[3];
+		elementData = new SoftDrink[3];
 		size = 0;
+	}
+
+	private void toSwap(int first, int second) {
+		SoftDrink temp = elementData[first];
+		elementData[first] = elementData[second];
+		elementData[second] = temp;
+	}
+
+	public void sortDrink(SoftDrink drink) {
+
+		for (int out = size() - 1; out >= 1; out--) {
+			for (int in = 0; in < out; in++) {
+				if (elementData[in].getName().charAt(0) > elementData[in + 1].getName().charAt(0)) {
+					toSwap(in, in + 1);
+				}
+			}
+
+		}
+
 	}
 
 	public boolean add(Object arg0) {
 		SoftDrink temp = (SoftDrink) arg0;
-		int newLenghtArray = elementDate.length + elementDate.length / 2;
-		
-		if (size < elementDate.length && size != 0) {
-			elementDate[size - 1] = temp;
-		} else if (size == elementDate.length) {
+		int newLenghtArray = elementData.length + elementData.length / 2;
+
+		if (size < elementData.length && size > 0) {
+			elementData[size] = temp;
+		} else if (size == elementData.length) {
 			SoftDrink[] tempArray = new SoftDrink[newLenghtArray];
-			System.arraycopy(elementDate, 0, tempArray, 0, elementDate.length);
-			elementDate = tempArray;
-			elementDate[size - 1] = temp;
-		} else {
-			elementDate[0] = temp;
+			System.arraycopy(elementData, 0, tempArray, 0, elementData.length);
+			elementData = tempArray;
+			elementData[size] = temp;
+		} else if (size == 0) {
+			elementData[0] = temp;
 		}
 		size++;
 		return false;
@@ -38,21 +57,20 @@ public class ArrayListMode implements List {
 	@Override
 	public void add(int arg0, Object arg1) {
 		SoftDrink temp = (SoftDrink) arg1;
-		int newLenghtArray = elementDate.length + elementDate.length / 2;
+		int newLenghtArray = elementData.length + elementData.length / 2;
 		int index = arg0;
-		if (size + 1 < elementDate.length) {
-			System.arraycopy(elementDate, index, elementDate, index + 1, size - index);
-			elementDate[index] = temp;
+		if (size + 1 < elementData.length) {
+			System.arraycopy(elementData, index, elementData, index + 1, size - index);
+			elementData[index] = temp;
 
 		} else {
 			SoftDrink[] tempArray = new SoftDrink[newLenghtArray];
-			System.arraycopy(elementDate, 0, tempArray, 0, elementDate.length);
-			elementDate = tempArray;
-			System.arraycopy(elementDate, index, elementDate, index + 1, size - index);
-			elementDate[index] = temp;
+			System.arraycopy(elementData, 0, tempArray, 0, elementData.length);
+			elementData = tempArray;
+			System.arraycopy(elementData, index, elementData, index + 1, size - index);
+			elementData[index] = temp;
 		}
 		size++;
-		
 
 	}
 
@@ -136,7 +154,10 @@ public class ArrayListMode implements List {
 
 	@Override
 	public Object remove(int arg0) {
-		// TODO Auto-generated method stub
+		int index = arg0;
+		int numMoved = size - index - 1;
+		System.arraycopy(elementData, index + 1, elementData, index, numMoved);
+		elementData[--size] = null;
 		return null;
 	}
 
