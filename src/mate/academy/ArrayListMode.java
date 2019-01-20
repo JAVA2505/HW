@@ -23,19 +23,17 @@ public class ArrayListMode implements List {
 		elementData[second] = temp;
 	}
 
-	public void sortDrink(SoftDrink drink) {
-
-		for (int out = size() - 1; out >= 1; out--) {
+	public void sortDrink() {
+		for (int out = size - 1; out >= 1; out--) {
 			for (int in = 0; in < out; in++) {
 				if (elementData[in].getName().charAt(0) > elementData[in + 1].getName().charAt(0)) {
 					toSwap(in, in + 1);
 				}
 			}
-
 		}
-
 	}
 
+	@Override
 	public boolean add(Object arg0) {
 		SoftDrink temp = (SoftDrink) arg0;
 		int newLenghtArray = elementData.length + elementData.length / 2;
@@ -148,7 +146,14 @@ public class ArrayListMode implements List {
 
 	@Override
 	public boolean remove(Object arg0) {
-		// TODO Auto-generated method stub
+		SoftDrink temp = (SoftDrink) arg0;
+		for (int i = 0; i < size; i++) {
+			if (temp.equals(elementData[i])) {
+				int numMoved = size - i - 1;
+				System.arraycopy(elementData, i + 1, elementData, i, numMoved);
+				elementData[--size] = null;
+			}
+		}
 		return false;
 	}
 
@@ -201,6 +206,11 @@ public class ArrayListMode implements List {
 	public Object[] toArray(Object[] a) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return Arrays.toString(elementData) + "\n";
 	}
 
 }
