@@ -19,7 +19,6 @@ public class JDBC {
 			conn = DriverManager.getConnection("jdbc:mysql://s3.thehost.ua/itea2?" 
 		+ "user=helen&password=123456");
 		} catch (SQLException ex) {
-			// handle any errors
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
